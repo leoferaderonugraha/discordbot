@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'discordrb'
 require 'httparty'
 require 'pry'
