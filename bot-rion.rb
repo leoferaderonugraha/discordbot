@@ -233,13 +233,13 @@ bot.command(:geoip) {|event, host|
 
 
 bot.command(:test1){|event|
-  session = GoogleDrive::Session.from_config('./config.json')
-  event.respond 'downloading...'
-  session.file_by_title("helloworld.txt").download_to_file('helloworld.txt')
-  event.respond 'done.'
+  fp = open("test.txt", 'w+')
+  fp.write("Hello World\n")
+  fp.close
+  event << 'done'
 }
 bot.command(:test2){|event|
-  fp2 = open("helloworld.txt", 'r')
+  fp2 = open("test.txt", 'r')
   event << fp2.read
   fp2.close
 }
