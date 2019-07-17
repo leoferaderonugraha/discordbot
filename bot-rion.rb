@@ -33,7 +33,6 @@ bot.command(:who) {|event|
 
 bot.command(:ping) {|event|
   'pong!'
-  #binding.pry
 }
 
 bot.command(:testargs) {|event|
@@ -53,11 +52,11 @@ bot.command(:connect) {|event|
   "Connected to voice channel: #{channel.name}"
 }
 
-bot.command(:play){|event|
-  music_dir = "/run/media/rion/68A4B510A4B4E22C/Users/rion/Music/"
-  voice_bot = event.voice
-  voice_bot.play_file("#{music_dir}01 Bohemian Rhapsody.mp3")
-}
+#bot.command(:play){|event|
+#  music_dir = "/run/media/rion/68A4B510A4B4E22C/Users/rion/Music/"
+#  voice_bot = event.voice
+#  voice_bot.play_file("#{music_dir}01 Bohemian Rhapsody.mp3")
+#}
 
 bot.command(:random){|event, min, max|
   rand(min.to_i..max.to_i)
@@ -82,11 +81,11 @@ bot.command(:online){|event|
   nil
 }
 
-#bot.command(:calc){|event|
-#  sum = event.message.content.split(' ')
-#  sum.shift
-#  event.respond eval(sum.join)
-#}
+bot.command(:d){|event|
+  sum = event.message.content.split(' ')
+  sum.shift
+  event.respond eval(sum.join)
+}
 
 #bot.command(:debug){ |event|
 #  binding.pry
@@ -130,7 +129,7 @@ bot.command(:insta){|event, username|
   doc = Nokogiri::HTML(open("https://www.instagram.com/#{username}/").read)
   doc.css('meta[property="og:description"]').map{|x| data << x['content']}
   data = data.split(',')
-  event << "Currently have: #{data[0]} and #{data[1]}"
+  event << "```css\nCurrently have: #{data[0]} and #{data[1]}\n```"
 }
 
 bot.command(:qotd){|event|
