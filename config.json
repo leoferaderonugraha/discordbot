@@ -1,0 +1,9 @@
+{
+  "client_id": "998931570779-s43igra0qpvhhu6j45jj386ttb1v2emd.apps.googleusercontent.com",
+  "client_secret": "RPNt_lhd2O2sGjPaCS9UCPGf",
+  "scope": [
+    "https://www.googleapis.com/auth/drive",
+    "https://spreadsheets.google.com/feeds/"
+  ],
+  "refresh_token": "1/H-wMk-MJ9ph3jxwQaWFyMTx8mEFceVEN-NNEHt0Vx-E"
+}
