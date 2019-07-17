@@ -8,7 +8,6 @@ require 'mechanize'
 require 'open-uri'
 require 'socket'
 require 'open3'
-require 'google_drive'
 
 bot_info = Hash.new
 bot_info['token'] = 'NjAwMTM2MjE0NTMxNjcwMDI4.XS62gw.CHgyZNV_GNuvYg0q9_huyJrA6uI'
@@ -231,20 +230,7 @@ bot.command(:geoip) {|event, host|
 }
 
 
-bot.command(:test1){|event|
-  event.respond "setting up session..."
-  session = GoogleDrive::Session.from_config('config.js')
-  event.respond "downloading file..."
-  session.file_by_title('helloworld.txt').download_to_file('helloworld2.txt')
-  event.respong "done..."
-}
-bot.command(:test2){|event|
-  fp2 = open("test.txt", 'r')
-  event << fp2.read
-  fp2.close
-}
-
-begin
+egin
   bot.run
 rescue Interrupt
   puts "Shutting Down..."
