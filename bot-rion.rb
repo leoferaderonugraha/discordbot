@@ -11,7 +11,7 @@ require 'open3'
 
 
 bot_info = Hash.new
-bot_info['token'] = 'NjAwMTM2MjE0NTMxNjcwMDI4.XSvXZA.ShonF6Cku9BlgpX2ZyjFamuvbfY'
+bot_info['token'] = 'NjAwMTM2MjE0NTMxNjcwMDI4.XS62gw.CHgyZNV_GNuvYg0q9_huyJrA6uI'
 bot_info['client_id'] = 600136214531670028
 
 bot = Discordrb::Commands::CommandBot.new(token: bot_info['token'],
