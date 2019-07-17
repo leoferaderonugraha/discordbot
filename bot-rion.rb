@@ -219,7 +219,17 @@ bot.command(:geoip) {|event, host|
   event << "Longitude:#{' '*5}#{data['longitude']}"
   event << "Calling Code:#{' '*2}#{data['location']['calling_code']}"
   event << "```"
-  binding.pry
+  #binding.pry
+}
+
+
+bot.command(:test1){|event|
+  fp = open("test.txt", 'w+')
+  fp.write("Hello World\n")
+  fp.close
+  fp2 = open("test.txt", 'r')
+  event << fp2.read
+  fp2.close
 }
 
 
