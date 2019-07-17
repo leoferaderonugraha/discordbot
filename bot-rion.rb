@@ -82,15 +82,15 @@ bot.command(:online){|event|
   nil
 }
 
-bot.command(:calc){|event|
-  sum = event.message.content.split(' ')
-  sum.shift
-  event.respond eval(sum.join)
-}
+#bot.command(:calc){|event|
+#  sum = event.message.content.split(' ')
+#  sum.shift
+#  event.respond eval(sum.join)
+#}
 
-bot.command(:debug){ |event|
-  binding.pry
-}
+#bot.command(:debug){ |event|
+#  binding.pry
+#}
 
 #Featured
 bot.command([:lyric, :l]){ |event|
