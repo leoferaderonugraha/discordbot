@@ -211,7 +211,6 @@ bot.command(:whois){|event, domain|
   #  event.respond "An error occured."
   #end
 }
-=end
 bot.command(:geoip) {|event, host|
   api_key = "e27e067ff86e4e81bd769aac1187a6fa"
   data = JSON.parse(open("http://api.ipstack.com/#{host}?access_key=#{api_key}&format=1").read)
