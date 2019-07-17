@@ -119,7 +119,7 @@ bot.command([:lyric, :l]){ |event|
   else
     event.respond "**" + doc.css('title').text + "**"
     
-    data[0].split("\n").each{|l|
+    data[0].split("\n\n").each{|l|
       event.respond "```"+l+"```"
     }
     
