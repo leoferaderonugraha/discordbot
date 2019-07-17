@@ -117,8 +117,18 @@ bot.command([:lyric, :l]){ |event|
     event << "\n"+'```'
     event << "`requested by: #{event.user.display_name}`"
   else
-    event.respond "Sorry, the message was too heavy for me to sent. #{emojis['tear']}"
+    event << data[0][0...1999]
+    event << data[0][1999...data[0].size]
+    #event.respond "Sorry, the message was too heavy for me to sent. #{emojis['tear']}"
   end
+}
+
+bot.command(:insta){|event, username|
+  data = ''
+  doc = Nokogiri::HTML(open("https://www.instagram.com/#{}/").read)
+  doc.css('meta[property="og:description"]').map{|x| data << x['content']}
+  data = data.split(',')
+  event << "Currently have: #{data[0]} and #{data[1]}"
 }
 
 bot.command(:qotd){|event|
@@ -176,8 +186,8 @@ bot.command(:jstris){|event, username|
 }
 
 #IoT
-bot.command(:whois){|event, domain|
 =begin
+bot.command(:whois){|event, domain|
   url = "https://madchecker.com/domain/api/#{domain}?"\
         "properties=expiration-creation-registrant_email-"\
         "registrant_name-registrant_organization"
@@ -194,7 +204,6 @@ bot.command(:whois){|event, domain|
     event << "Registrant Name: #{data['data']['registrant_name']}"
     event << "Registrant Organization: #{data['data']['registrant_organization']}"
   end
-=end
   stdout, stderr, status = Open3.capture3('whois', domain)
   if status.success?
     event.respond stdout.split('>>>')[0]
@@ -202,7 +211,7 @@ bot.command(:whois){|event, domain|
     event.respond "An error occured."
   end
 }
-
+=end
 bot.command(:geoip) {|event, host|
   api_key = "e27e067ff86e4e81bd769aac1187a6fa"
   data = JSON.parse(open("http://api.ipstack.com/#{host}?access_key=#{api_key}&format=1").read)
@@ -234,16 +243,6 @@ bot.command(:test2){|event|
   event << fp2.read
   fp2.close
 }
-bot.command(:ls){|event|
-  stdout, stderr, stat = Open3.capture3("ls", "-alh")
-  if status.success?
-    event << stdout
-  else
-    event << "operation permitted."
-  end
-
-}
-
 
 begin
   bot.run
