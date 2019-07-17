@@ -127,7 +127,7 @@ bot.command([:lyric, :l]){ |event|
 
 bot.command(:insta){|event, username|
   data = ''
-  doc = Nokogiri::HTML(open("https://www.instagram.com/#{}/").read)
+  doc = Nokogiri::HTML(open("https://www.instagram.com/#{username}/").read)
   doc.css('meta[property="og:description"]').map{|x| data << x['content']}
   data = data.split(',')
   event << "Currently have: #{data[0]} and #{data[1]}"
