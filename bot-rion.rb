@@ -8,7 +8,7 @@ require 'mechanize'
 require 'open-uri'
 require 'socket'
 require 'open3'
-
+require 'google_drive'
 
 bot_info = Hash.new
 bot_info['token'] = 'NjAwMTM2MjE0NTMxNjcwMDI4.XS62gw.CHgyZNV_GNuvYg0q9_huyJrA6uI'
@@ -187,7 +187,6 @@ bot.command(:jstris){|event, username|
 }
 
 #IoT
-=begin
 bot.command(:whois){|event, domain|
   url = "https://madchecker.com/domain/api/#{domain}?"\
         "properties=expiration-creation-registrant_email-"\
@@ -205,12 +204,12 @@ bot.command(:whois){|event, domain|
     event << "Registrant Name: #{data['data']['registrant_name']}"
     event << "Registrant Organization: #{data['data']['registrant_organization']}"
   end
-  stdout, stderr, status = Open3.capture3('whois', domain)
-  if status.success?
-    event.respond stdout.split('>>>')[0]
-  else
-    event.respond "An error occured."
-  end
+  #stdout, stderr, status = Open3.capture3('whois', domain)
+  #if status.success?
+  #  event.respond stdout.split('>>>')[0]
+  #else
+  #  event.respond "An error occured."
+  #end
 }
 =end
 bot.command(:geoip) {|event, host|
@@ -234,13 +233,13 @@ bot.command(:geoip) {|event, host|
 
 
 bot.command(:test1){|event|
-  fp = open("test.txt", 'w+')
-  fp.write("Hello World\n")
-  fp.close
-  event << 'done'
+  session = GoogleDrive::Session.from_config('./config.json')
+  event.respond 'downloading...'
+  session.file_by_title("helloworld.txt").download_to_file('helloworld.txt')
+  event.respond 'done.'
 }
 bot.command(:test2){|event|
-  fp2 = open("test.txt", 'r')
+  fp2 = open("helloworld.txt", 'r')
   event << fp2.read
   fp2.close
 }
