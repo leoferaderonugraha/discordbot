@@ -227,11 +227,13 @@ bot.command(:test1){|event|
   fp = open("test.txt", 'w+')
   fp.write("Hello World\n")
   fp.close
+  event << 'done'
+}
+bot.command(:test2){|event|
   fp2 = open("test.txt", 'r')
   event << fp2.read
   fp2.close
 }
-
 
 
 begin
