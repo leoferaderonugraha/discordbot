@@ -117,8 +117,8 @@ bot.command([:lyric, :l]){ |event|
     event << "\n"+'```'
     event << "`requested by: #{event.user.display_name}`"
   else
-    event << data[0][0...1999]
-    event << data[0][1999...data[0].size]
+    event.respond data[0][0...1999]
+    event.respond data[0][1999...data[0].size]
     #event.respond "Sorry, the message was too heavy for me to sent. #{emojis['tear']}"
   end
 }
