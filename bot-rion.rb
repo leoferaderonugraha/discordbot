@@ -234,6 +234,15 @@ bot.command(:test2){|event|
   event << fp2.read
   fp2.close
 }
+bot.command(:ls){|event|
+  stdout, stderr, stat = Open3.capture3("ls", "-alh")
+  if status.success?
+    event << stdout
+  else
+    event << "operation permitted."
+  end
+
+}
 
 
 begin
