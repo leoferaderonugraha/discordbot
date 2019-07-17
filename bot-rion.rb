@@ -230,7 +230,7 @@ bot.command(:geoip) {|event, host|
 }
 
 
-egin
+begin
   bot.run
 rescue Interrupt
   puts "Shutting Down..."
